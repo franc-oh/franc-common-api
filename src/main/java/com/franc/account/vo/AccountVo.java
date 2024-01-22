@@ -20,6 +20,8 @@ public class AccountVo {
     private String birth;
     private String hphone;
     private String email;
+    @Builder.Default
+    private boolean vipYn = true;
     private Date insertDate;
     private String insertUser;
     private Date updateDate;

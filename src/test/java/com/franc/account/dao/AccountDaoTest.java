@@ -31,6 +31,7 @@ public class AccountDaoTest {
                 .accountId(accountId)
                 .accountName("JOHN")
                 .birth("19880101")
+                .vipYn(false)
                 .build();
 
         // #2. When
@@ -40,6 +41,7 @@ public class AccountDaoTest {
         assertThat(resultVo).isNotNull();
         assertThat(resultVo.getAccountName()).isEqualTo(givenVo.getAccountName());
         assertThat(resultVo.getBirth()).isEqualTo(givenVo.getBirth());
+        assertThat(resultVo.isVipYn()).isEqualTo(givenVo.isVipYn());
     }
 
 
