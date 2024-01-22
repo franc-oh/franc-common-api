@@ -37,21 +37,18 @@ repositories {
 
 // 라이브러리 관리단
 dependencies {
-    /*
-         라이브러리 추가, 해당모듈을 직접 의존하는 모듈만 빌드
-           - A(implementation) <- B <- C 로 의존하는 구조라면, A 수정 시 B 만 빌드
-     */
+
+    // 라이브러리 추가, 해당모듈을 직접 의존하는 모듈만 빌드
+    //  - A(implementation) <- B <- C 로 의존하는 구조라면, A 수정 시 B 만 빌드
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation "org.mybatis.spring.boot:mybatis-spring-boot-starter:$mybatisVersion"
 
-    /*
-         어노테이션 기반 라이브러리를 컴파일러가 인식하도록 함
-           - ex.) lombok, queryDSL
-     */
+    // 어노테이션 기반 라이브러리를 컴파일러가 인식하도록 함
+    //   - ex.) lombok, queryDSL
     annotationProcessor "org.projectlombok:lombok:$lombokVersion"
 
     // compile에만 필요하고, runtime에는 필요없는 라이브러리
-    compileOnly 'org.springframework.boot:spring-boot-devtools'
     compileOnly "org.projectlombok:lombok:$lombokVersion"
 
     // runtime에만 필요한 라이브러리
@@ -63,6 +60,8 @@ dependencies {
     // 테스트에 사용하는 라이브러리 추가
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation"org.junit.jupiter:junit-jupiter:$junitVersion"
+
+    testCompileOnly "org.mybatis.spring.boot:mybatis-spring-boot-starter-test:$mybatisVersion"
 
 }
 

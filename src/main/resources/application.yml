@@ -15,3 +15,13 @@ spring:
     ansi:
       enabled: always
 
+  datasource:
+    hikari:
+      connection-test-query: SELECT 1
+      minimum-idle: 10
+      maximum-pool-size: 20
+      pool-name: franc-pool
+
+mybatis:
+  mapper-locations: classpath:/mapper/**/*.xml
+  config-location: classpath:mybatis-config.xml

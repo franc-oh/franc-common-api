@@ -8,6 +8,21 @@ spring:
     activate:
       on-profile: "test"
 
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb;MODE=MySQL;DB_CLOSE_DELAY=-1
+    username: common
+    password: common1234
+
+  sql:
+    init:
+      schema-locations: classpath:init-data/h2db/schema.sql
+      data-locations: classpath:init-data/h2db/data.sql
+      username: common
+      password: common1234
+      mode: always
+      encoding: UTF-8
+
   h2:
     console:
       enabled: true
