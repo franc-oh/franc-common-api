@@ -1,0 +1,17 @@
+server:
+  port: 8090
+  servlet:
+      context-path: /franc/api
+      encoding:
+        charset: UTF-8
+        enabled: true
+        force: true
+  tomcat:
+    uri-encoding: UTF-8
+
+
+spring:
+  output:
+    ansi:
+      enabled: always
+

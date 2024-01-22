@@ -1,0 +1,78 @@
+buildscript {
+    // 전역변수 블록
+    ext {
+        springBootVersion = '3.2.0'
+        lombokVersion = '1.18.26'
+        mybatisVersion = '3.0.3'
+        junitVersion = '5.10.0'
+    }
+}
+
+// 프로젝트에 적용할 플러그인 의존성 (굵은글씨는 스프링부트 어플리케이션 필수 플러그인)
+plugins {
+    id 'java'
+    id 'eclipse'
+    id 'war'
+    id 'org.springframework.boot' version "${springBootVersion}"
+    id 'io.spring.dependency-management' version '1.1.4'
+}
+
+
+group 'com.franc'               // 프로젝트 groupId
+version '1.0-SNAPSHOT'          // 어플리케이션 버전
+sourceCompatibility = '17'      // 자바버전
+
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+}
+
+// 라이브러리들을 다운로드할 저장소
+repositories {
+    mavenCentral()
+}
+
+// 라이브러리 관리단
+dependencies {
+    /*
+         라이브러리 추가, 해당모듈을 직접 의존하는 모듈만 빌드
+           - A(implementation) <- B <- C 로 의존하는 구조라면, A 수정 시 B 만 빌드
+     */
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    /*
+         어노테이션 기반 라이브러리를 컴파일러가 인식하도록 함
+           - ex.) lombok, queryDSL
+     */
+    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+
+    // compile에만 필요하고, runtime에는 필요없는 라이브러리
+    compileOnly 'org.springframework.boot:spring-boot-devtools'
+    compileOnly "org.projectlombok:lombok:$lombokVersion"
+
+    // runtime에만 필요한 라이브러리
+    runtimeOnly 'com.h2database:h2'
+
+    // 개발환경에서만 적용되는 설정 (devtools)
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // 테스트에 사용하는 라이브러리 추가
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation"org.junit.jupiter:junit-jupiter:$junitVersion"
+
+}
+
+// gradle test Task 설정
+test {
+    systemProperty 'spring.profiles.active', 'test' // 테스트 실행환경
+    useJUnitPlatform() // 테스트 플랫폼
+
+    // 제외할 패키지가 있다면..
+    //useJUnitPlatform {
+    //    exclude("com/study/**/*.class")
+    //}
+}
