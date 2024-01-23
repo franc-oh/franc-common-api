@@ -9,17 +9,23 @@ spring:
       on-profile: "test"
 
   datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:testdb;MODE=MySQL;DB_CLOSE_DELAY=-1
-    username: common
-    password: common1234
+    account:
+      driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+      jdbc-url: jdbc:log4jdbc:h2:mem:accountdb;MODE=MySQL;DB_CLOSE_DELAY=-1
+      username: account
+      password: account1234
+    product:
+      driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+      jdbc-url: jdbc:log4jdbc:h2:mem:;MODE=MySQL;DB_CLOSE_DELAY=-1
+      username: product
+      password: product1234
 
   sql:
     init:
       schema-locations: classpath:init-data/h2db/schema.sql
       data-locations: classpath:init-data/h2db/data.sql
-      username: common
-      password: common1234
+      username: account
+      password: account1234
       mode: always
       encoding: UTF-8
 
@@ -27,4 +33,20 @@ spring:
     console:
       enabled: true
       path: /h2-console
+
+logging:
+  level:
+    root: INFO
+    com.zaxxer.hikari.pool.HikariPool: INFO
+    org:
+      springframework:
+        boot:
+          autoconfigure: ERROR
+    jdbc:
+      sqlonly: OFF
+      sqltiming: INFO
+      resultsettable: INFO
+      audit: OFF
+      resultset: OFF
+      connection: OFF
 
