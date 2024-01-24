@@ -21,7 +21,7 @@ public class AccountVo {
     private String hphone;
     private String email;
     @Builder.Default
-    private boolean vipYn = true;
+    private boolean vipYn = false;
     private Date insertDate;
     private String insertUser;
     private Date updateDate;

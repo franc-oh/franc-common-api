@@ -4,6 +4,28 @@
 
 <mapper namespace="com.franc.account.dao.AccountDao">
 
+    <insert id="save" parameterType="com.franc.account.vo.AccountVo">
+        /** AccountMapper.save */
+        INSERT INTO ACCOUNT(
+            ACCOUNT_NAME, BIRTH, HPHONE, EMAIL, VIP_YN, INSERT_DATE, INSERT_USER)
+        VALUES(
+            #{accountName},
+            #{birth},
+            #{hphone},
+            #{email},
+            #{vipYn},
+            now(),
+            #{insertUser}
+        )
+    </insert>
+
+
+    <select id="findAll" resultType="com.franc.account.vo.AccountVo">
+        /** AccountMapper.findAll */
+        SELECT A.*
+        FROM ACCOUNT A
+    </select>
+
     <select id="findById" parameterType="Long" resultType="com.franc.account.vo.AccountVo">
         /** AccountMapper.findById */
         SELECT A.*
@@ -11,4 +33,20 @@
         WHERE A.ACCOUNT_ID = #{accountId}
     </select>
 
+    <select id="findByEmailOrHphone" parameterType="String" resultType="com.franc.account.vo.AccountVo">
+        /** AccountMapper.findById */
+        SELECT A.*
+        FROM ACCOUNT A
+        WHERE 1=1
+        <if test='email != null and !email.equals("")'>
+            AND A.EMAIL = #{email}
+        </if>
+        <if test='hphone != null and !hphone.equals("")'>
+            AND A.HPHONE = #{hphone}
+        </if>
+        limit 1
+    </select>
+
 </mapper>
+
+
