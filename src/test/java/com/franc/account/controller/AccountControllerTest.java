@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.franc.account.controller.dto.AccountSaveDto;
 import com.franc.account.service.AccountService;
-import com.franc.common.response.CommonVar;
+import com.franc.common.CommonVar;
 import com.franc.exception.ControllerExceptionHandler;
 import com.franc.exception.ExceptionContent;
 import org.junit.jupiter.api.BeforeEach;

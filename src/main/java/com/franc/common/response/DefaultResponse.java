@@ -1,5 +1,6 @@
 package com.franc.common.response;
 
+import com.franc.common.CommonVar;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
