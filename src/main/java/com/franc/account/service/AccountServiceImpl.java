@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service(value = "accountService")
 @RequiredArgsConstructor
 public class AccountServiceImpl implements AccountService {
@@ -40,6 +42,16 @@ public class AccountServiceImpl implements AccountService {
 
     }
 
+
+    /**
+     * findAll
+     * @return List<AccountVo>
+     * @throws Exception
+     */
+    @Override
+    public List<AccountVo> findAll() throws Exception {
+        return accountDao.findAll();
+    }
 
     /**
      * findById

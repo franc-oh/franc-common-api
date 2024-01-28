@@ -5,17 +5,35 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 
-public class AccountGetDto {
+public class AccountGetListDto {
 
-    @Schema(name = "AccountGetResponse", description = "회원조회 Response")
+    @Schema(name = "AccountGetListResponse", description = "회원목록조회 Response")
     @Getter @Setter
     @NoArgsConstructor
     @AllArgsConstructor
     @Builder
     @ToString
     public static class Response {
+
+        @Schema(description = "데이터 건 수", example = "1")
+        private Integer count;
+
+        @Schema(description = "회원목록", type = "array")
+        private List<AccountData> list;
+
+    }
+
+
+    @Schema(name = "AccountGetListResponseListData")
+    @Getter @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    @ToString
+    public static class AccountData {
 
         @Schema(description = "회원번호", example = "1")
         private Long accountId;
