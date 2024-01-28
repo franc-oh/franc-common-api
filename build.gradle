@@ -5,6 +5,7 @@ buildscript {
         lombokVersion = '1.18.26'
         mybatisVersion = '3.0.3'
         junitVersion = '5.10.0'
+        mapStructVersion = '1.5.3.Final'
     }
 }
 
@@ -48,10 +49,14 @@ dependencies {
     implementation "org.mybatis.spring.boot:mybatis-spring-boot-starter:$mybatisVersion"
     implementation 'org.springframework.boot:spring-boot-starter-log4j2'
     implementation "org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16"
+    implementation "org.mapstruct:mapstruct:$mapStructVersion"
+    implementation 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
 
     // 어노테이션 기반 라이브러리를 컴파일러가 인식하도록 함
     //   - ex.) lombok, queryDSL
     annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+    annotationProcessor "org.mapstruct:mapstruct-processor:$mapStructVersion"
 
     // compile에만 필요하고, runtime에는 필요없는 라이브러리
     compileOnly "org.projectlombok:lombok:$lombokVersion"
@@ -67,6 +72,8 @@ dependencies {
     testImplementation"org.junit.jupiter:junit-jupiter:$junitVersion"
 
     testCompileOnly "org.mybatis.spring.boot:mybatis-spring-boot-starter-test:$mybatisVersion"
+
+    testAnnotationProcessor "org.mapstruct:mapstruct-processor:$mapStructVersion"
 
 }
 
